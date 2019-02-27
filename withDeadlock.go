@@ -47,12 +47,6 @@ func main() {
 	ch45 <- 4
 	ch51 <- 5
 
-	//close(ch12)
-	//close(ch23)
-	//close(ch34)
-	//close(ch45)
-	//close(ch51)
-
 	fmt.Scanln()
 	
 }
