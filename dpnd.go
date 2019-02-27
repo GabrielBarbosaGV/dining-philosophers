@@ -75,5 +75,5 @@ func main() {
 
 	mutex <- false
 
-	for {}
+	fmt.Scanln()
 }
