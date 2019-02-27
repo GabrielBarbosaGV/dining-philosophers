@@ -47,6 +47,7 @@ func newPhilosopher(philNum int) func(chan bool, []bool) {
 func main() {
 	var philosopherAmount int = 5
 	var mutex chan bool
+	mutex = make(chan bool)
 
 	var philosopherRoutines []func (chan bool, []bool) =
 		make([]func (chan bool, []bool), philosopherAmount, philosopherAmount)
