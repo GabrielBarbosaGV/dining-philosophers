@@ -13,8 +13,8 @@ func eat(left chan int, right chan int, id int) {
 		fork2 := <-right
 		fmt.Printf("Philosopher %d gets fork %d\n", id, fork2)
 	
-		fmt.Printf("PHILOSOPHER %d WILL EAT FOR 5 SECONDS\n", id)
-		time.Sleep(10 * time.Second)
+		fmt.Printf("PHILOSOPHER %d WILL EAT FOR 2 SECONDS\n", id)
+		time.Sleep(2 * time.Second)
 	
 		fmt.Printf("Philosopher %d puts down fork %d\n", id, fork1)
 		left <- fork1
