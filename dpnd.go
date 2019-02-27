@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
 	"math/rand"
 )
@@ -60,4 +60,8 @@ func main() {
 		philosopherRoutines[i] = newPhilosopher(i)
 		go philosopherRoutines[i](mutex, forks)
 	}
+
+	mutex <- false
+
+	for {}
 }
