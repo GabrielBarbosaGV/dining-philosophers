@@ -17,22 +17,32 @@ func newPhilosopher(philNum int) func(chan bool, []bool) {
 
 		for {
 			// Think
+
 			if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "has started thinking...") }
+
 			sleepTimeMillis := rand.Intn(maxSleepTimeMillis)
 			time.Sleep(time.Duration(sleepTimeMillis) * time.Millisecond)
+
 			if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "is done thinking.") }
 
 			// Ask for permission to get forks
 			if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "asking for permission to eat...") }
+
 			lock := <- mutex
+
 			if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "was granted permission!") }
+
 			if forks[philosopherNum] && forks[(philosopherNum + 1) % len(forks)] {
+
 				if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "had available forks, getting forks...") }
+
 				// It is now FALSE that the left and right forks are available
 				forks[philosopherNum] = false
 				forks[(philosopherNum + 1) % len(forks)] = false
 				hasForks = true
+				
 				if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "is done getting forks.") }
+				
 			} else if debugPrintOuts {
 				fmt.Println("Philosopher", philosopherNum, "did not have available forks, thinking again...")
 			}
@@ -40,13 +50,17 @@ func newPhilosopher(philNum int) func(chan bool, []bool) {
 
 			// Eat if philosopher has forks, otherwise think again
 			if hasForks {
+				
 				if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "has started eating...") }
+				
 				eatingTimeMillis := rand.Intn(maxEatingTimeMillis)
 				time.Sleep(time.Duration(eatingTimeMillis) * time.Millisecond)
+				
 				if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "is done eating.") }
 
 				// Put forks down
 				if debugPrintOuts { fmt.Println("Philosopher", philosopherNum, "Is putting his forks back down.") }
+				
 				forks[philosopherNum] = true
 				forks[(philosopherNum + 1) % len(forks)] = true
 				hasForks = false
